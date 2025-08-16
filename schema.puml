@@ -1,0 +1,33 @@
+@startuml
+package "Entities" {
+  class User {
+    +id: Int <<PK>>
+    +name: String
+    +email: String <<unique>>
+  }
+  class Project {
+    +id: Int <<PK>>
+    +title: String
+    +ownerId: Int <<FK>>
+  }
+  class Task {
+    +id: Int <<PK>>
+    +description: String
+    +projectId: Int?
+  }
+  class Attachment {
+    +id: Int <<PK>>
+    +filePath: String
+    +taskId: Int <<FK>>
+  }
+  class ProjectTaskCrossRef {
+    +projectId: Int
+    +taskId: Int
+  }
+}
+
+User "1" --> "*" Project : owns
+Project "1" --> "*" Attachment : has
+Task "1" --> "*" Attachment : has
+Project "*" -- "*" Task : many-to-many (via ProjectTaskCrossRef)
+@enduml
