@@ -1,22 +1,22 @@
 @startuml
 package "Entities" {
   class User {
-    +id: Int <<PK>>
+    +userId: Int <<PK>>
     +name: String
     +email: String <<unique>>
   }
   class Project {
-    +id: Int <<PK>>
+    +projectId: Int <<PK>>
     +title: String
     +ownerId: Int <<FK>>
   }
   class Task {
-    +id: Int <<PK>>
+    +taskId: Int <<PK>>
     +description: String
     +projectId: Int?
   }
   class Attachment {
-    +id: Int <<PK>>
+    +attachmentId: Int <<PK>>
     +filePath: String
     +taskId: Int <<FK>>
   }
